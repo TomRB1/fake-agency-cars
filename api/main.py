@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = FastAPI()
+app = FastAPI(redirect_slashes=False)
 
 # Cliente de Supabase (Python SDK)
 supabase = create_client(
@@ -30,7 +30,7 @@ class CheckoutRequest(BaseModel):
     total: float
 
 # GET /productos
-@app.get("/productos")
+@app.get("/productos/", include_in_schema=False)
 def get_productos():
     response = supabase.table("productos").select("*").execute()
     return response.data

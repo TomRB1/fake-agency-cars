@@ -1,2 +1,13 @@
+[project]
+name = "fake-agency-cars"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "supabase",
+    "python-dotenv"
+]
+
 [tool.vercel]
 entrypoint = "app.main:app"

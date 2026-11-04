@@ -29,6 +29,10 @@ class CheckoutRequest(BaseModel):
     items: list[ItemCarrito]
     total: float
 
+@app.get("/")
+def root():
+    return {"status": "ok", "mensaje": "La API de autos está funcionando!"}
+
 # GET /productos
 @app.get("/productos/", include_in_schema=False)
 def get_productos():

@@ -11,10 +11,10 @@ app = FastAPI(redirect_slashes=False)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # En un TP está bien, permite cualquier origen
-    allow_credentials=False, # Ojo: si allow_origins es "*", esto debe ser False
-    allow_methods=["*"],     # Permite GET, POST, etc.
-    allow_headers=["*"],     # Permite los headers que manda React Native
+    allow_origins=["*"], 
+    allow_credentials=False, 
+    allow_methods=["*"],     
+    allow_headers=["*"],     
 )
 
 # Cliente de Supabase (Python SDK)

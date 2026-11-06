@@ -3,10 +3,19 @@ from pydantic import BaseModel
 from supabase import create_client
 import os
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
 app = FastAPI(redirect_slashes=False)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], 
+    allow_credentials=False, 
+    allow_methods=["*"],     
+    allow_headers=["*"],     
+)
 
 # Cliente de Supabase (Python SDK)
 supabase = create_client(

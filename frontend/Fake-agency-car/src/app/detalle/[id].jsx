@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { ScrollView, Text, Image, ActivityIndicator, StyleSheet } from "react-native";
+import { ScrollView, Text, Image, ActivityIndicator, StyleSheet,Alert, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams } from "expo-router";
+import useCart from "../../../hooks/useCarrito";
 
 const API = "https://fake-agency-cars.vercel.app/productos/";
 
@@ -21,6 +22,13 @@ export default function Detalle() {
     carga();
   }, [id]);
 
+  const { addToCart } = useCart();
+
+const handleAddToCart = () => {
+  const agregado = addToCart(auto);
+  Alert.alert(agregado ? "Listo" : "Ya está en el carrito", auto.nombre);
+};
+
   if (!auto) {
     return (
       <SafeAreaView style={styles.centro}>
@@ -36,6 +44,13 @@ export default function Detalle() {
         <Text style={styles.nombre}>{auto.nombre}</Text>
         <Text style={styles.precio}>${Number(auto.precio).toLocaleString("es-AR")}</Text>
         <Text style={styles.descripcion}>{auto.descripcion}</Text>
+
+        <Pressable style={styles.boton} onPress={handleAddToCart}>
+         <Text style={styles.textoBoton}>🛒 Agregar al carrito</Text>
+        </Pressable>
+
+        
+        
       </ScrollView>
     </SafeAreaView>
   );
